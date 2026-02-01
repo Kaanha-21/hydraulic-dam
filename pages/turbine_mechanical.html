@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turbine Mechanical Data</title>
+
+    <link rel="stylesheet" href="./turbine_mechanical.css" />
+
+    <!-- Chart.js BEFORE our JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./turbine_mechanical.js" defer></script>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Digital Twin</h2>
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="./hydraulic_parameter.html">🌊 Hydraulic Data</a></li>
+        <li><a href="./electrical_parameter.html">⚡ Electrical Data</a></li>
+        <li><a href="./reservoir_parameters.html">🏞 Reservoi Data</a></li>
+        <li>
+          <a href="./turbine_mechanical.html" class="active">🛠 Turbine Data</a>
+        </li>
+        <li>
+          <a href="./turbine_maintenance.html" class="active"
+            >🧰 Maintenance Data</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="top">
+        <h1>Turbine Mechanical Panel</h1>
+        <div class="actions">
+          <button id="toggle-run">⏸ Pause</button>
+          <label class="speed"
+            >Speed
+            <select id="interval-ms">
+              <option value="1500" selected>1.5s</option>
+              <option value="1000">1.0s</option>
+              <option value="500">0.5s</option>
+            </select>
+          </label>
+          <button id="theme-toggle">🌙</button>
+        </div>
+      </header>
+
+      <!-- KPIs -->
+      <section class="cards">
+        <div class="card">
+          <span class="label">Speed (rpm)</span
+          ><span class="value" id="kpi-speed">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Torque (N·m)</span
+          ><span class="value" id="kpi-torque">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Vibration (mm/s)</span
+          ><span class="value" id="kpi-vib">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Bearing Temp (°C)</span
+          ><span class="value" id="kpi-temp">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Efficiency (%)</span
+          ><span class="value" id="kpi-eff">—</span>
+        </div>
+      </section>
+
+      <!-- Live Graph -->
+      <section class="panel">
+        <div class="panel-head"><h2>Realtime Mechanical Trend</h2></div>
+        <!-- compact like your other pages -->
+        <canvas id="mechChart" class="chart-small"></canvas>
+      </section>
+
+      <!-- Live Table -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Recent Samples</h2>
+          <button id="clear-table" class="ghost">Clear</button>
+        </div>
+        <div class="table-wrap">
+          <table id="mechTable">
+            <thead>
+              <tr>
+                <th>timestamp</th>
+                <th>rotational_speed</th>
+                <th>torque</th>
+                <th>vibration</th>
+                <th>bearing_temperature</th>
+                <th>efficiency</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

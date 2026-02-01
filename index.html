@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hydraulic Dam Dashboard</title>
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Chart.js for realtime graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2>Digital Twin</h2>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li><a href="pages/hydraulic_parameter.html">🌊 Hydraulic Data</a></li>
+        <li>
+          <a href="pages/electrical_parameter.html">⚡ Electrical Data</a>
+        </li>
+        <li><a href="pages/reservoir_parameters.html">🏞 Reservoir Data</a></li>
+        <li><a href="pages/turbine_mechanical.html">🛠 Turbine Data</a></li>
+        <li>
+          <a href="pages/turbine_maintenance.html" class="active"
+            >🧰 Maintenance Data</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+      <header>
+        <h1>Hydraulic Dam Control Panel</h1>
+        <button id="theme-toggle">🌙</button>
+      </header>
+
+      <!-- CARDS -->
+      <section class="cards">
+        <div class="card">
+          <h3>Water Level</h3>
+          <p id="water-level">82.5 m</p>
+        </div>
+        <div class="card">
+          <h3>Flow Rate</h3>
+          <p id="flow-rate">320 m³/s</p>
+        </div>
+        <div class="card">
+          <h3>Turbine Type</h3>
+          <p id="Turbine-type">Kaplan Turbine</p>
+        </div>
+        <div class="card">
+          <h3>Turbine Output</h3>
+          <p id="turbine-output">91%</p>
+        </div>
+        <div class="card">
+          <h3>Made By</h3>
+          <p id="Made-By">KAANHA</p>
+        </div>
+      </section>
+
+      <!-- REALTIME GRAPH -->
+      <section class="chart-section">
+        <h2>Realtime Flow Trend</h2>
+        <canvas id="liveChart"></canvas>
+      </section>
+
+      <!-- LIVE TABLE -->
+      <section class="table-section">
+        <h2>Live Hydraulic Readings</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Head (m)</th>
+              <th>Flow (m³/s)</th>
+              <th>Pressure (Pa)</th>
+              <th>Efficiency (%)</th>
+            </tr>
+          </thead>
+
+          <tbody id="data-body">
+            <!-- JS will inject rows -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

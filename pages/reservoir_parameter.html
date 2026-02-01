@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservoir Parameters</title>
+
+    <link rel="stylesheet" href="./reservoir_parameters.css" />
+
+    <!-- Chart.js MUST come before our JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./reservoir_parameters.js" defer></script>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Digital Twin</h2>
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="./hydraulic_parameter.html">🌊 Hydraulic Data</a></li>
+        <li><a href="./electrical_parameter.html">⚡ Electrical Data</a></li>
+        <li>
+          <a href="./reservoir_parameters.html" class="active"
+            >🏞 Reservoir Data</a
+          >
+        </li>
+        <li>
+          <a href="./turbine_mechanical.html" class="active">🛠 Turbine Data</a>
+        </li>
+        <li>
+          <a href="./turbine_maintenance.html" class="active"
+            >🧰 Maintenance Data</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="top">
+        <h1>Reservoir Control Panel</h1>
+        <div class="actions">
+          <button id="toggle-run">⏸ Pause</button>
+          <label class="speed">
+            Speed
+            <select id="interval-ms">
+              <option value="1500" selected>1.5s</option>
+              <option value="1000">1.0s</option>
+              <option value="500">0.5s</option>
+            </select>
+          </label>
+          <button id="theme-toggle">🌙</button>
+        </div>
+      </header>
+
+      <!-- KPIs -->
+      <section class="cards">
+        <div class="card">
+          <span class="label">Water Level (m)</span
+          ><span class="value" id="kpi-level">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Inflow (m³/s)</span
+          ><span class="value" id="kpi-inflow">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Outflow (m³/s)</span
+          ><span class="value" id="kpi-outflow">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Storage (m³)</span
+          ><span class="value" id="kpi-storage">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Water Temp (°C)</span
+          ><span class="value" id="kpi-temp">—</span>
+        </div>
+      </section>
+
+      <!-- Charts -->
+      <section class="panel">
+        <div class="panel-head"><h2>Level & Storage</h2></div>
+        <div class="chart-scroller">
+          <canvas id="chartLevelStorage" class="chart-wide"></canvas>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Inflow vs Outflow</h2></div>
+        <div class="chart-scroller">
+          <canvas id="chartFlow" class="chart-wide"></canvas>
+        </div>
+      </section>
+
+      <!-- Live Table -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Recent Samples</h2>
+          <button id="clear-table" class="ghost">Clear</button>
+        </div>
+        <div class="table-wrap">
+          <table id="reservoirTable">
+            <thead>
+              <tr>
+                <th>res_id</th>
+                <th>timestamp</th>
+                <th>water_level_m</th>
+                <th>inflow_rate_m3s</th>
+                <th>outflow_rate_m3s</th>
+                <th>storage_volume_m3</th>
+                <th>water_temp_c</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

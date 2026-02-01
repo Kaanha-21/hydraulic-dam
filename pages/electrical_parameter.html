@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Electrical Parameters</title>
+
+  <link rel="stylesheet" href="./electrical_parameter.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./electrical_parameter.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>Digital Twin</h2>
+    <ul>
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="./hydraulic_parameter.html">🌊 Hydraulic Data</a></li>
+      <li><a href="./electrical_parameter.html" class="active">⚡ Electrical Data</a></li>
+      <li><a href="./reservoir_parameters.html">🏞 Reservoir Data</a></li>
+      <li><a href="./turbine_mechanical.html" class="active">🛠 Turbine Data</a></li>
+      <li><a href="./turbine_maintenance.html" class="active">🧰 Maintenance Data</a></li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <h1>Generator Electrical Panel</h1>
+      <div class="actions">
+        <button id="toggle-run">⏸ Pause</button>
+        <label class="speed">
+          Speed
+          <select id="interval-ms">
+            <option value="1500" selected>1.5s</option>
+            <option value="1000">1.0s</option>
+            <option value="500">0.5s</option>
+          </select>
+        </label>
+        <button id="theme-toggle">🌙</button>
+      </div>
+    </header>
+
+    <section class="cards">
+      <div class="card"><span class="label">Voltage (V)</span><span class="value" id="kpi-voltage">—</span></div>
+      <div class="card"><span class="label">Current (A)</span><span class="value" id="kpi-current">—</span></div>
+      <div class="card"><span class="label">Power (kW)</span><span class="value" id="kpi-power">—</span></div>
+      <div class="card"><span class="label">Power Factor</span><span class="value" id="kpi-pf">—</span></div>
+      <div class="card"><span class="label">Frequency (Hz)</span><span class="value" id="kpi-freq">—</span></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Realtime Electrical Trend</h2></div>
+      <!-- NOTE: compact class -->
+      <canvas id="liveElecChart" class="chart-small"></canvas>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Recent Samples</h2>
+        <button id="clear-table" class="ghost">Clear</button>
+      </div>
+      <div class="table-wrap">
+        <table id="electricalTable">
+          <thead>
+            <tr>
+              <th>record_id</th><th>generator_voltage_v</th><th>generator_current_a</th>
+              <th>power_output_kw</th><th>power_factor</th><th>frequency_hz</th><th>timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

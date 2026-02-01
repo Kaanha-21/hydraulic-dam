@@ -1,0 +1,251 @@
+/* ===== Dark Futuristic — matches your other pages ===== */
+:root {
+  --bg: #0b0f19;
+  --text: #e2e9ff;
+  --muted: #9bb0d1;
+  --panel: #141b2d;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #2baaff;
+  --accent2: #6dd6ff;
+  --r: 14px;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  display: flex;
+  background: radial-gradient(
+    120% 80% at 0% 0%,
+    #0d1430 0%,
+    #0b0f19 60%,
+    #090d16 100%
+  );
+  color: var(--text);
+  font:
+    500 15px/1.55 Poppins,
+    system-ui,
+    sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  padding: 18px 16px;
+  border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #0f1526, #0c1222);
+}
+.sidebar h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  color: var(--accent);
+}
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sidebar a {
+  color: var(--muted);
+  text-decoration: none;
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: 0.15s;
+  border: 1px solid transparent;
+}
+.sidebar a:hover {
+  background: #1a2336;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.sidebar a.active {
+  background: linear-gradient(
+    135deg,
+    rgba(43, 170, 255, 0.22),
+    rgba(43, 170, 255, 0.1)
+  );
+  color: #fff;
+  border-color: rgba(43, 170, 255, 0.25);
+}
+
+/* Main shell */
+.main {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow: auto;
+  padding: 18px;
+  background:
+    radial-gradient(
+      100% 60% at 100% 0%,
+      rgba(43, 170, 255, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      100% 50% at 0% 100%,
+      rgba(60, 225, 143, 0.06),
+      transparent 60%
+    );
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.02)
+    ),
+    var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 12px 14px;
+}
+.top h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, var(--accent2));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.actions select,
+#toggle-run,
+#theme-toggle,
+.ghost {
+  background: var(--panel);
+  color: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+/* KPI cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01)
+    ),
+    var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 12px 14px;
+}
+.card .label {
+  color: var(--muted);
+  font-size: 12px;
+}
+.card .value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Panels + table */
+.panel {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01)
+    ),
+    var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-top: 14px;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+.table-wrap {
+  overflow: auto;
+}
+#reservoirTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+#reservoirTable thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(43, 170, 255, 0.28),
+    rgba(43, 170, 255, 0.1)
+  );
+  color: #dff1ff;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.35px;
+  padding: 10px 12px;
+}
+#reservoirTable tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+#reservoirTable tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.02);
+}
+#reservoirTable tbody tr:hover {
+  background: rgba(43, 170, 255, 0.08);
+}
+
+/* ====== CHART SIZING (as requested) ====== */
+/* Hard canvas size 1500x500 with graceful overflow scroller */
+.chart-scroller {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.chart-wide {
+  width: 1500px !important;
+  height: 500px !important;
+  display: block;
+  margin: 10px auto;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 0 1px var(--border),
+    0 10px 30px rgba(0, 0, 0, 0.35);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+    radial-gradient(
+      120% 60% at 0% 0%,
+      rgba(43, 170, 255, 0.06),
+      transparent 60%
+    );
+}
+
+/* Mobile/Small screens – keep width but allow scroll (no resize to honor spec) */
+@media (max-width: 1600px) {
+  .chart-scroller {
+    padding-bottom: 4px;
+  }
+}

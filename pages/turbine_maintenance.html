@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turbine Maintenance Status</title>
+
+    <link rel="stylesheet" href="./turbine_maintenance.css" />
+
+    <!-- Chart.js before our JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./turbine_maintenance.js" defer></script>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Digital Twin</h2>
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="./hydraulic_parameter.html">🌊 Hydraulic Data</a></li>
+        <li><a href="./electrical_parameter.html">⚡ Electrical Data</a></li>
+        <li><a href="./reservoir_parameters.html">🏞 Reservoir Data</a></li>
+        <li><a href="./turbine_mechanical.html">🛠 Turbine Data</a></li>
+        <li>
+          <a href="./turbine_maintenance.html" class="active"
+            >🧰 Maintenance Data</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="top">
+        <h1>Turbine Maintenance Panel</h1>
+        <div class="actions">
+          <button id="toggle-run">⏸ Pause</button>
+          <label class="speed"
+            >Speed
+            <select id="interval-ms">
+              <option value="2000" selected>2.0s</option>
+              <option value="1000">1.0s</option>
+              <option value="500">0.5s</option>
+            </select>
+          </label>
+          <button id="theme-toggle">🌙</button>
+        </div>
+      </header>
+
+      <!-- KPIs -->
+      <section class="cards">
+        <div class="card">
+          <span class="label">Total Turbines</span
+          ><span class="value" id="kpi-total">—</span>
+        </div>
+        <div class="card">
+          <span class="label">OK</span
+          ><span class="value ok" id="kpi-ok">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Upcoming (&lt; 10 days)</span
+          ><span class="value warn" id="kpi-up">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Due (&lt;= 3 days)</span
+          ><span class="value danger" id="kpi-due">—</span>
+        </div>
+        <div class="card">
+          <span class="label">Total Operating Hours</span
+          ><span class="value" id="kpi-hours">—</span>
+        </div>
+      </section>
+
+      <!-- Status Distribution (donut) -->
+      <section class="panel">
+        <div class="panel-head"><h2>Status Distribution</h2></div>
+        <canvas id="donutChart" class="chart-small"></canvas>
+      </section>
+
+      <!-- Live Table -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Maintenance Schedule & Hours</h2>
+          <button id="clear-table" class="ghost">Clear Table</button>
+        </div>
+        <div class="table-wrap">
+          <table id="maintTable">
+            <thead>
+              <tr>
+                <th>record_id</th>
+                <th>turbine_name</th>
+                <th>plant_name</th>
+                <th>upcoming_maintenance_date</th>
+                <th>days_left</th>
+                <th>operating_hours</th>
+                <th>maintenance_status</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
